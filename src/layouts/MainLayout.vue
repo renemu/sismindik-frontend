@@ -2,11 +2,16 @@
 import sidebar from "@/components/Sidebar.vue";
 import navbar from "@/components/Navbar.vue";
 </script>
+<script>
+export default {
+  props: ["title"],
+};
+</script>
 <template>
   <div class="layout">
     <sidebar />
     <div class="main-container">
-      <navbar class="navbar" :title="titleRoute" />
+      <navbar class="navbar" :title="title" />
       <main class="main-content">
         <slot />
       </main>

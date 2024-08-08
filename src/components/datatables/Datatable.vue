@@ -5,7 +5,7 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <table id="datatable" :class="tableClass ? tableClass : 'table table-bordered table-hover table-striped align-middle text-nowrap dt-responsive nowrap dataTable no-footer'" style="width: 100%">
+        <table id="datatable" :class="tableClass ? tableClass : 'table table-bordered table-hover align-middle text-nowrap dt-responsive nowrap dataTable no-footer'" style="width: 100%">
           <!-- class="table table-bordered table-striped align-middle text-nowrap dt-responsive nowrap dataTable no-footer" -->
           <thead class="align-middle">
             <tr>
@@ -13,11 +13,13 @@
                 v-for="column in columns"
                 :key="column.name"
                 @click="column.sortable ? $emit('sorting', column.name) : null"
-                :style="'width:' + column.width + '; cursor:' + (column.sortable ? ' pointer;' : ' default;')"
+                :style="'width:' + column.width + '; cursor:' + (column.sortable ? ' pointer;' : ' default;') + 'background-color:' + bgThead"
                 :class="checkIcon(column)"
                 :hidden="column.hidden ? column.hidden : false"
               >
-                {{ column.label }}
+                <span :class="theadText">
+                  {{ column.label }}
+                </span>
               </th>
             </tr>
           </thead>
@@ -32,7 +34,7 @@
 </template>
 <script>
 export default {
-  props: ["columns", "arrows", "tableClass"],
+  props: ["columns", "arrows", "tableClass", "theadText", "bgThead"],
   methods: {
     checkIcon(column) {
       if (column.sortable) {

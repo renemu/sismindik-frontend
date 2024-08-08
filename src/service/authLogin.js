@@ -16,3 +16,7 @@ export async function logout(params) {
 export async function register(params) {
   return apiClient.post("/register", params);
 }
+
+export async function code(data) {
+  return apiClient.post("/code", data);
+}

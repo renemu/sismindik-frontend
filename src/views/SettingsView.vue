@@ -2,7 +2,7 @@
 import Layout from "@/layouts/MainLayout.vue";
 </script>
 <template>
-  <Layout>
+  <Layout title="Settings">
     <h1>Settings</h1>
   </Layout>
 </template>

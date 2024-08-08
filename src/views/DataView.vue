@@ -3,6 +3,7 @@ import Layout from "@/layouts/MainLayout.vue";
 import datatable from "@/components/datatables/Datatable.vue";
 import _debounce from "lodash/debounce";
 import pagination from "@/components/datatables/Pagination.vue";
+import moment from "moment";
 import Swal from "sweetalert2";
 import apiClient from "@/service/ApiClientService";
 import { reactive } from "vue";
@@ -23,7 +24,7 @@ const state = reactive({
     {
       label: "Nama",
       name: "nama",
-      class: "text-primary fw-bold",
+      class: "text-primary fw-normal",
       custom: {
         icon: "ri-user-line",
         routeName: "data.detail",
@@ -34,6 +35,7 @@ const state = reactive({
     {
       label: "NIK",
       name: "nik",
+      class: "fs-6",
       sortable: true,
     },
     {
@@ -62,8 +64,13 @@ const state = reactive({
       sortable: true,
     },
     {
-      label: "Action",
+      label: "Created At",
+      name: "created_at",
+      sortable: true,
     },
+    // {
+    //   label: "Action",
+    // },
   ],
   perPage: ["5", "10", "25", "50", "100"],
   arrows: {
@@ -96,7 +103,12 @@ const state = reactive({
     },
   },
 });
-
+function formatDate(date) {
+  if (date) {
+    return moment(date, "YYYY-MM-DD HH:mm:ss").format("DD MMM YYYY");
+  }
+  return "";
+}
 function getProjects(url = state.url, par) {
   apiClient.get(url, { params: par ? par : state.tableData }).then((res) => {
     let getData = res.data.data;
@@ -110,10 +122,6 @@ function getProjects(url = state.url, par) {
     state.pagination.lastPageUrl = getData.last_page_url;
     state.pagination.nextPageUrl = getData.next_page_url;
     state.pagination.prevPageUrl = getData.prev_page_url;
-    // state.options.categories = state.projects.map((e) => e.tanggal_lahir);
-    // state.options.chart.series[0].data = state.projects.map((e) => e.id);
-    // state.options.chart.series[0].name = "ID";
-    console.log(state.pagination);
   });
 }
 const searching = _debounce((e) => {
@@ -178,14 +186,15 @@ const submitAdd = async () => {
 getProjects();
 </script>
 <template>
-  <layout>
+  <layout title="Data">
+    <h1>Data Person</h1>
     <div class="col">
       <div class="card">
         <div class="card-header">
           <button class="btn btn-primary" @click="modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="ri-add-circle-line align-bottom me-1"></i>Tambah Data</button>
         </div>
         <div class="card-body">
-          <datatable :columns="state.columns" @sorting="sortBy" :arrows="state.arrows">
+          <datatable theadText="fw-normal" bgThead="#f5f5f5" :columns="state.columns" @sorting="sortBy" :arrows="state.arrows">
             <template #showingSearch>
               <div class="col-sm-12 col-md-6">
                 <div class="dataTables_length">
@@ -229,6 +238,11 @@ getProjects();
                     <div v-else-if="column.name === 'tanggal_lahir'" align="center">
                       <span :class="column.class">
                         {{ project[column.name] }}
+                      </span>
+                    </div>
+                    <div v-else-if="column.name === 'created_at'" align="center">
+                      <span :class="column.class">
+                        {{ formatDate(project[column.name]) }}
                       </span>
                     </div>
                     <div v-else-if="column.label === 'Action'" align="center">
@@ -287,19 +301,5 @@ getProjects();
         </div>
       </div>
     </div>
-    <!-- <div class="row m-3">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <ApexCharts :series="state.options.chart.series" :categories="categoriesDate" :tooltip="state.options.categories"></ApexCharts>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">heii</div>
-        </div>
-      </div>
-    </div> -->
   </layout>
 </template>

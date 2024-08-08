@@ -4,7 +4,7 @@ import { authLogin } from "@/service";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-const props = defineProps(["title"]);
+const props = defineProps(["title", "routeTitle"]);
 let token = localStorage.getItem("token");
 let user = localStorage.getItem("user");
 let dataUser = JSON.parse(user);
@@ -53,8 +53,10 @@ const logout = async () => {
       <div class="collapse navbar-collapse" id="navbarScroll">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
           <li class="nav-item">
-            <a class="text-light nav-link active" aria-current="page" href="#">Home</a>
-            <span class="text-light"> {{ props.title }}</span>
+            <span class="text-light">
+              <!-- <router-link class="text-light nav-link" aria-current="page" to="props.routeTitle">{{ props.title }}</router-link> -->
+              {{ props.title }}
+            </span>
           </li>
         </ul>
         <span class="text-end text-light text-uppercase" style="margin-right: 30px"> {{ dataUser.name }} </span>

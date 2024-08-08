@@ -2,7 +2,7 @@
 import layout from "@/layouts/MainLayout.vue";
 </script>
 <template>
-  <layout>
+  <layout title="Form">
     <h1>Form</h1>
     <div class="card">
       <div class="card-body">

@@ -13,7 +13,6 @@
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.3",
-    "jl-datatable": "^1.1.1",
     "moment": "^2.30.1",
     "pinia": "^2.1.7",
     "remixicon": "^4.3.0",

@@ -5,7 +5,7 @@ let user = localStorage.getItem("user");
 let dataUser = JSON.parse(user);
 </script>
 <template>
-  <Layout>
+  <Layout title="Users">
     <div class="card">
       <div class="card-body">
         <h1 class="text-uppercase">{{ dataUser.name }}</h1>

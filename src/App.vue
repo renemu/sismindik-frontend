@@ -6,7 +6,9 @@
 
 <style lang="scss">
 @import "/src/assets/custom-css/dataTables.bootstrap5.min.css";
-
+@import "/src/assets/custom-css/responsive.bootstrap.min.css";
+@import "/src/assets/custom-css/buttons.dataTables.min.css";
+@import "/src/assets/custom-css/buttons.bootstrap5.min.css";
 :root {
   --primary: rgb(0, 161, 0);
   --grey: grey;
