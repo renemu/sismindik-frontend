@@ -73,7 +73,7 @@ const formSubmit = async () => {
             </div>
             <div class="login__field">
               <i class="login__icon ri-user-2-fill"></i>
-              <input type="text" class="login__input" v-model="state.formData.name" placeholder="User name / Email" required />
+              <input type="text" class="login__input" v-model="state.formData.name" placeholder="Email" required />
             </div>
             <div class="login__field">
               <i class="login__icon ri-key-2-fill"></i>

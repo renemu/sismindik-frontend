@@ -24,9 +24,18 @@ const submit = async () => {
     showCancelButton: true,
   }).then((result) => {
     if (result.isConfirmed) {
-      router.push({ name: "login" });
-      authLogin.register(dataRegister);
-      // console.log(dataRegister);
+      authLogin
+        .register(dataRegister)
+        .then(() => {
+          router.push({ name: "login" });
+        })
+        .catch((e) => {
+          Swal.fire({
+            title: "Invalid Register",
+            icon: "error",
+            text: `${e.response.data.password}`,
+          });
+        });
     }
   });
 };
@@ -48,12 +57,11 @@ const submit = async () => {
                 <label for="email">Email Address</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="password" class="form-control" v-model="data.formData.password" id="password" placeholder="Password" required />
+                <input type="password" class="form-control" v-model="data.formData.password" id="password" placeholder="Password" required minlength="8" />
                 <label for="password">Password</label>
               </div>
-
               <div class="form-floating">
-                <input type="password" class="form-control" v-model="data.formData.password_confirmation" id="passwordCnfrm" placeholder="Password Confirmation" required />
+                <input type="password" class="form-control" v-model="data.formData.password_confirmation" id="passwordCnfrm" placeholder="Password Confirmation" required minlength="8" />
                 <label for="passwordCnfrm">Password Confirmation</label>
               </div>
               <div class="mt-4 d-flex justify-content-end gap-2">

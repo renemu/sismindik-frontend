@@ -40,6 +40,9 @@ const logout = async () => {
       authLogin.logout(dataLogout);
       router.push({ name: "login" });
       localStorage.clear();
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     }
   });
 };
