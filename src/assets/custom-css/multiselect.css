@@ -1,0 +1,16 @@
+:root {
+    --vs-dropdown-bg: #fff;
+    --vs-selected-color: #fff;
+    --vs-selected-bg: #536295;
+    --vs-dropdown-option--deselect-color: #fff;
+    --vs-dropdown-option--deselect-bg: #fff;
+  }
+  
+  .vs__selected{
+      padding: 4px;
+  }
+  
+  .vs__deselect{
+      fill: #fff;
+      margin-left: 10px;
+  }
