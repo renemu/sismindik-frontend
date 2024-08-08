@@ -22,7 +22,7 @@
   font-family: "Fira sans", sans-serif;
 }
 body {
-  background: var(--light);
+  background: rgb(245, 245, 245);
 }
 button {
   cursor: pointer;
