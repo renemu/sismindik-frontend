@@ -8,6 +8,7 @@ const router = useRouter();
 const state = reactive({
   formData: {},
 });
+const data = "yeah";
 const toRegis = () => {
   Swal.fire({
     title: "Anda Mencoba Mendaftar !!!",
