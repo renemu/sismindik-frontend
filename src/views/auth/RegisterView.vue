@@ -33,7 +33,7 @@ const submit = async () => {
           Swal.fire({
             title: "Invalid Register",
             icon: "error",
-            text: `${e.response.data.password}`,
+            text: `${e.response.data.password || e.response.data.email}`,
           });
         });
     }
